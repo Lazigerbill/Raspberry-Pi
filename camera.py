@@ -2,10 +2,13 @@ import time
 import picamera
 
 with picamera.PiCamera() as camera:
-	camera.start_preview()
-	try:
-		for i in range(100):
-			camera.brightness = i
-			time.sleep(0.2)
-	finally:
-		camera.stop_preview()
+    camera.resolution = (1280, 720)
+    camera.start_preview()
+    camera.exposure_compensation = 2
+    camera.exposure_mode = 'spotlight'
+    camera.meter_mode = 'matrix'
+    camera.image_effect = 'gpen'
+    # Give the camera some time to adjust to conditions
+    time.sleep(20)
+    # camera.capture('foo.jpg')
+    camera.stop_preview()
