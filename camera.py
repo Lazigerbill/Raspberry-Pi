@@ -7,5 +7,5 @@ with picamera.PiCamera() as camera:
 		for i in range(100):
 			camera.brigtness = i
 			time.sleep(0.2)
-		finally:
-			camera.stop_preview()
+	finally:
+		camera.stop_preview()
