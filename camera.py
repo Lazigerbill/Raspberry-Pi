@@ -9,6 +9,6 @@ with picamera.PiCamera() as camera:
     # camera.meter_mode = 'matrix'
     # camera.image_effect = 'gpen'
     # Give the camera some time to adjust to conditions
-    time.sleep(20)
+    time.sleep(30)
     # camera.capture('foo.jpg')
     camera.stop_preview()
