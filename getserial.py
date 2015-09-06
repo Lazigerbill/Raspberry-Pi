@@ -11,6 +11,5 @@ def getserial():
     cpuserial = "ERROR000000000"
 
 
-  print(cpuserial)
+  return cpuserial
 
-getserial()
