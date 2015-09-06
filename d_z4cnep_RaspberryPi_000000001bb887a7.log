@@ -138,3 +138,5 @@
 2015-09-06 14:59:11,682   ibmiotf.device.Client      INFO    Messages published : 2709, life: 2753s, rate: 1/1.02s
 2015-09-06 14:59:11,682   ibmiotf.device.Client      INFO    Messages received  : 0, life: 2753s, rate: 1/0.00s
 2015-09-06 14:59:23,195   ibmiotf.device.Client      INFO    Connected successfully: d:z4cnep:RaspberryPi:000000001bb887a7
+2015-09-06 15:46:39,453   ibmiotf.device.Client      WARNING Unable to encrypt messages because TLSv1.2 is unavailable (MQTT over SSL requires at least Python v2.7.9 or 3.4 and openssl v1.0.1)
+2015-09-06 15:46:49,944   ibmiotf.device.Client      CRITICAL Operation timed out connecting to the IBM Internet of Things service: z4cnep.messaging.internetofthings.ibmcloud.com

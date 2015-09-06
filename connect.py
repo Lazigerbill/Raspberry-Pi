@@ -3,7 +3,13 @@ import time
 import grovepi
 
 try:
-	options = ibmiotf.device.ParseConfigFile("/Desktop/IoT/device.cfg")
+	options = {
+    "org": "z4cnep",
+    "type": "RaspberryPi",
+    "id": "000000001bb887a7",
+    "auth-method": "token",
+    "auth-token": "6xzR?XvuXGVd2+k?qq"
+  }
 	client = ibmiotf.device.Client(options)
 	client.connect()
 
