@@ -140,3 +140,12 @@
 2015-09-06 14:59:23,195   ibmiotf.device.Client      INFO    Connected successfully: d:z4cnep:RaspberryPi:000000001bb887a7
 2015-09-06 15:46:39,453   ibmiotf.device.Client      WARNING Unable to encrypt messages because TLSv1.2 is unavailable (MQTT over SSL requires at least Python v2.7.9 or 3.4 and openssl v1.0.1)
 2015-09-06 15:46:49,944   ibmiotf.device.Client      CRITICAL Operation timed out connecting to the IBM Internet of Things service: z4cnep.messaging.internetofthings.ibmcloud.com
+2015-09-06 15:54:39,946   ibmiotf.device.Client      ERROR   Unexpected disconnect from the IBM Internet of Things Foundation
+2015-09-06 16:04:37,557   ibmiotf.device.Client      WARNING Unable to encrypt messages because TLSv1.2 is unavailable (MQTT over SSL requires at least Python v2.7.9 or 3.4 and openssl v1.0.1)
+2015-09-06 16:04:37,656   ibmiotf.device.Client      INFO    Connected successfully: d:z4cnep:RaspberryPi:000000001bb887a7
+2015-09-06 16:05:56,253   ibmiotf.device.Client      WARNING Unable to encrypt messages because TLSv1.2 is unavailable (MQTT over SSL requires at least Python v2.7.9 or 3.4 and openssl v1.0.1)
+2015-09-06 16:05:56,341   ibmiotf.device.Client      INFO    Connected successfully: d:z4cnep:RaspberryPi:000000001bb887a7
+2015-09-06 16:07:43,701   ibmiotf.device.Client      WARNING Unable to encrypt messages because TLSv1.2 is unavailable (MQTT over SSL requires at least Python v2.7.9 or 3.4 and openssl v1.0.1)
+2015-09-06 16:07:43,795   ibmiotf.device.Client      INFO    Connected successfully: d:z4cnep:RaspberryPi:000000001bb887a7
+2015-09-06 16:09:53,136   ibmiotf.device.Client      WARNING Unable to encrypt messages because TLSv1.2 is unavailable (MQTT over SSL requires at least Python v2.7.9 or 3.4 and openssl v1.0.1)
+2015-09-06 16:09:53,243   ibmiotf.device.Client      INFO    Connected successfully: d:z4cnep:RaspberryPi:000000001bb887a7

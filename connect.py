@@ -4,25 +4,25 @@ import grovepi
 
 try:
 	options = {
-    "org": "z4cnep",
-    "type": "RaspberryPi",
-    "id": "000000001bb887a7",
-    "auth-method": "token",
-    "auth-token": "6xzR?XvuXGVd2+k?qq"
-  }
+	"org": "z4cnep",
+	"type": "RaspberryPi",
+	"id": "000000001bb887a7",
+	"auth-method": "token",
+	"auth-token": "6xzR?XvuXGVd2+k?qq"
+	}
 	client = ibmiotf.device.Client(options)
 	client.connect()
 
 	ultrasonic_ranger = 4
 	while True:
 		try:
-		    # Read distance value from Ultrasonic
-		    reading = grovepi.ultrasonicRead(ultrasonic_ranger)
+		  # Read distance value from Ultrasonic
+		  myData={'distance' : grovepi.ultrasonicRead(ultrasonic_ranger)}
+		  client.publishEvent("status", "json", myData)
+		  time.sleep(10)
 		except:
-		    print ("Error reading ultrasonic")
-		myData={'distance' : reading}
-		client.publishEvent("status", "json", myData)
-		time.sleep(10)
+			print ("Error reading ultrasonic")
+			break
 
 except ibmiotf.ConnectionException  as e:
 	print(e)
