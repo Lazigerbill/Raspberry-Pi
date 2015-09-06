@@ -14,4 +14,4 @@ except ibmiotf.ConnectionException  as e:
 
 client.connect()
 myData={'name' : 'foo', 'cpu' : 60, 'mem' : 50}
-client.publishEvent("status", "json", myData)
+client.publishEvent(event="status", msgFormat="json", data=myData)
