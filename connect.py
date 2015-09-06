@@ -1,6 +1,8 @@
-import ibmiotf.device
 import time
 import grovepi
+import serial, httplib
+
+
 
 try:
 	options = {
@@ -22,7 +24,17 @@ try:
 		  time.sleep(10)
 		except:
 			print ("Error reading ultrasonic")
-			break
+			
 
 except ibmiotf.ConnectionException  as e:
 	print(e)
+
+
+def sendRequest(reading):
+	headers = {"Contect-type": "application/x-www-form-urlencoded"}
+	conn = httplib.HTTPConnection("knuckleballers.mybluemix.net")
+	conn.request("POST", "/server_post", "reading=" +readings, headers)
+	repsonse = conn.getresponse()
+	print response.status, response.reason
+	data = response.read()
+	conn.close()
