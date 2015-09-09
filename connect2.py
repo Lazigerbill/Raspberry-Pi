@@ -25,3 +25,6 @@ def sendRequest(reading):
 	print response.status, response.reason
 	data = response.read()
 	conn.close()
+
+
+# Eric's change is here!
