@@ -13,3 +13,5 @@ def getserial():
 
   return cpuserial
 
+print(getserial())
+
