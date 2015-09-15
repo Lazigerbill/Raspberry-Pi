@@ -30,8 +30,8 @@ try:
 			soundlvl = 'Sensor error!'
 
 		myData={'temp':temp, 'humidity':humidity, 'lightlvl':lightlvl, 'soundlvl':soundlvl}
-		client.publishEvent("status", "json", myData)
-		time.sleep(300)
+		client.publishEvent("IC306A", "json", myData)
+		time.sleep(60)
 
 except ibmiotf.ConnectionException as e:
 	print(e)

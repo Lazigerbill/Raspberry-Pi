@@ -5,14 +5,14 @@ import psutil
 
 ACCOUNT_NAME = "qxzhiwrtnr"
 FLOW_PATH = "/qxzhiwrtnr"
-ACCOUNT_TOKEN = "Fa6mePjYNTNJeuKyqjUQN1VCzvQp0Eq2"
+ACCOUNT_TOKEN = "5hJHAdCNhYP1jvdUGmLeKD3UDBT9"
 
 #get cpu temperature
 
 def cpu_temp():
 	process = Popen(['vcgencmd', 'measure_temp'], stdout=PIPE)
 	output, error = process.communicate()
-	return float(ooutput[output.index('=') + 1:output.rindiex("'")])
+	return float(output[output.index('=') + 1:output.index("'")])
 
 def drop():
 	drop = {
@@ -32,7 +32,7 @@ def drop():
 		}	
 	}
 
-	ram = psutil.phymem_usage()
+	ram = psutil.virtual_memory()
 	drop['elems']['ram']['value']['total'] = ram.total / 2 ** 20
 	drop['elems']['ram']['value']['used'] = ram.used / 2 ** 20
 	drop['elems']['ram']['value']['free'] = ram.free / 2 ** 20
