@@ -1,4 +1,6 @@
+import pytz
 import time
+from datetime import datetime
 import ibmiotf.device
 from grovepi import grovepi
 
@@ -29,8 +31,9 @@ try:
 		except:
 			soundlvl = 'Sensor error!'
 
-		myData={'temp':temp, 'humidity':humidity, 'lightlvl':lightlvl, 'soundlvl':soundlvl}
-		client.publishEvent("IC306A", "json", myData)
+		myQosLevel=1
+		myData={"d": {'temp':temp, 'humidity':humidity, 'lightlvl':lightlvl, 'soundlvl':soundlvl}, "ts": datetime.now().isoformat()}
+		client.publishEvent("IC306A", "json", myData, myQosLevel)
 		time.sleep(60)
 
 except ibmiotf.ConnectionException as e:
