@@ -13,6 +13,7 @@ try:
 		dht = 4
 		light_sensor = 1
 		sound_sensor = 0
+		moist_sensor = 2
 		try:
 			temp = grovepi.dht(dht,0)[0]
 		except: 
@@ -29,11 +30,15 @@ try:
 			soundlvl = grovepi.analogRead(sound_sensor)
 		except:
 			soundlvl = None
+		try:
+			moistlvl = grovepi.analogRead(moist_sensor)
+		except:
+			moistlvl = None
 
 		myQosLevel=1
 
 		# timestamp is UTC, and UTC time shall be used across
-		myData={"d": {'temp':temp, 'humidity':humidity, 'lightlvl':lightlvl, 'soundlvl':soundlvl}, "ts": datetime.utcnow().isoformat()+"Z"}
+		myData={"d": {'temp':temp, 'humidity':humidity, 'lightlvl':lightlvl, 'soundlvl':soundlvl, 'moistlvl':moistlvl}, "ts": datetime.utcnow().isoformat()+"Z"}
 		client.publishEvent("IC306A", "json", myData, myQosLevel)
 		time.sleep(30)
 
