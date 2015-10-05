@@ -8,32 +8,18 @@ while True:
 	light_sensor = 1
 	sound_sensor = 0
 	moist_sensor = 2
-	try:
-		temp = grovepi.dht(dht,0)[0]
-	except: 
-		temp = None
-	try:
-		humidity = grovepi.dht(dht,0)[1]
-	except:
-		humidity = None
-	try:
-		lightlvl = grovepi.analogRead(light_sensor)
-	except:
-		lightlvl = None
-	try:
-		soundlvl = grovepi.analogRead(sound_sensor)
-	except:
-		soundlvl = None
-	try:
-		moistlvl = grovepi.analogRead(moist_sensor)
-	except:
-		moistlvl = None
+
+	temp = grovepi.dht(dht,0)[0]
+	humidity = grovepi.dht(dht,0)[1]
+	lightlvl = grovepi.analogRead(light_sensor)
+	soundlvl = grovepi.analogRead(sound_sensor)
+	moistlvl = grovepi.analogRead(moist_sensor)
 
 
 	# timestamp is UTC, and UTC time shall be used across
 	myData={"d": {'temp':temp, 'humidity':humidity, 'lightlvl':lightlvl, 'soundlvl':soundlvl, 'moistlvl':moistlvl}, "ts": datetime.utcnow().isoformat()+"Z"}
 	print(myData)
-	time.sleep(6)
+	time.sleep(1)
 
 
 # def myCommandCallback(cmd):
