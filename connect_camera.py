@@ -42,7 +42,7 @@ try:
 		try:
 			camera.start_preview()
 			time.sleep(1)
-			camera.capture('live_pic.jpg', resize=(480, 320))
+			camera.capture('live_pic.jpg', resize=(320, 480))
 			camera.stop_preview()
 			pass
 		finally:
