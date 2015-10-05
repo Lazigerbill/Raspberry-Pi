@@ -42,7 +42,7 @@ try:
 		try:
 			camera.start_preview()
 			time.sleep(1)
-			camera.capture('live_pic.jpg', resize=(320, 480))
+			camera.capture('live_pic.jpg', resize=(320, 320))
 			camera.stop_preview()
 			pass
 		finally:
@@ -50,7 +50,7 @@ try:
 
 		publishEncodedImage(convertImageToBase64())
 
-		time.sleep(60)
+		time.sleep(30)
 
 except ibmiotf.ConnectionException as e:
 	print(e)
