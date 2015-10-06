@@ -10,10 +10,9 @@ try:
 	
 	while True:
 		# define pin number for sensors here
-		dht = 4
-		light_sensor = 1
-		sound_sensor = 0
-		moist_sensor = 2
+		dht = 7
+		light_sensor = 2
+		moist_sensor = 0
 		try:
 			temp = grovepi.dht(dht,0)[0]
 		except: 
@@ -27,10 +26,6 @@ try:
 		except:
 			lightlvl = None
 		try:
-			soundlvl = grovepi.analogRead(sound_sensor)
-		except:
-			soundlvl = None
-		try:
 			moistlvl = grovepi.analogRead(moist_sensor)
 		except:
 			moistlvl = None
@@ -38,9 +33,9 @@ try:
 		myQosLevel=1
 
 		# timestamp is UTC, and UTC time shall be used across
-		myData={"d": {'temp':temp, 'humidity':humidity, 'lightlvl':lightlvl, 'soundlvl':soundlvl, 'moistlvl':moistlvl}, "ts": datetime.utcnow().isoformat()+"Z"}
+		myData={"d": {'temp':temp, 'humidity':humidity, 'lightlvl':lightlvl, 'moistlvl':moistlvl}, "ts": datetime.utcnow().isoformat()+"Z"}
 		client.publishEvent("IC306A", "json", myData, myQosLevel)
-		time.sleep(6)
+		time.sleep(10)
 
 except ibmiotf.ConnectionException as e:
 	print(e)
