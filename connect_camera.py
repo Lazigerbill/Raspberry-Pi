@@ -42,9 +42,9 @@ try:
 		try:
 			camera.vflip = True
 			camera.resolution = (640, 480)
-			camera.zoom(0.0,0.0,0.5,1.0)
 			camera.start_preview()
 			time.sleep(1)
+			camera.zoom(0.0,0.0,0.5,1.0)
 			camera.capture('live_pic.jpg')
 			camera.stop_preview()
 			pass
