@@ -52,7 +52,7 @@ try:
 
 		publishEncodedImage(convertImageToBase64())
 
-		time.sleep(60)
+		time.sleep(30)
 
 except ibmiotf.ConnectionException as e:
 	print(e)
