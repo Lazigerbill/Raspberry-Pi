@@ -32,7 +32,7 @@ def publishEncodedImage(encoded):
 		pos += 1
 
 try:
-	options = ibmiotf.device.ParseConfigFile('/home/pi/Desktop/IoT/camera.cfg')
+	options = ibmiotf.device.ParseConfigFile('/etc/camera.cfg')
 	client = ibmiotf.device.Client(options)
 	client.connect()
 	# client.commandCallback = myCommandCallback

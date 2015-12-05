@@ -1,10 +1,10 @@
 import time
 from datetime import datetime
-import ibmiotf.device
-from grovepi import grovepi
+import ibmiotf.device #install by 'sudo pip install ibmiotf' on the Rpi
+import grovepi #run setup.py in the grovepi directory
 
 try:
-	options = ibmiotf.device.ParseConfigFile('/home/pi/Desktop/IoT/sensors.cfg')
+	options = ibmiotf.device.ParseConfigFile('/etc/sensors.cfg')
 	client = ibmiotf.device.Client(options)
 	client.connect()
 	
@@ -33,9 +33,9 @@ try:
 		myQosLevel=1
 
 		# timestamp is UTC, and UTC time shall be used across
-		myData={"d": {'temp':temp, 'humidity':humidity, 'lightlvl':lightlvl, 'moistlvl':moistlvl}, "ts": datetime.utcnow().isoformat()+"Z"}
+		myData={'d': {'temp':temp, 'humidity':humidity, 'lightlvl':lightlvl, 'moistlvl':moistlvl}, 'ts': datetime.utcnow().isoformat()+'Z'}
 		client.publishEvent("IC306A", "json", myData, myQosLevel)
-		time.sleep(60)
+		time.sleep(15)
 
 except ibmiotf.ConnectionException as e:
 	print(e)
@@ -48,5 +48,4 @@ except ibmiotf.ConnectionException as e:
 #   elif cmd.command == "TurnOff":
 #     grovepi.digitalWrite(2,0)
 #     print("LED is now turned ON")
-
 
