@@ -35,7 +35,7 @@ try:
 		# timestamp is UTC, and UTC time shall be used across
 		myData={'d': {'temp':temp, 'humidity':humidity, 'lightlvl':lightlvl, 'moistlvl':moistlvl}, 'ts': datetime.utcnow().isoformat()+'Z'}
 		client.publishEvent("IC306A", "json", myData, myQosLevel)
-		time.sleep(10)
+		time.sleep(30)
 
 except ibmiotf.ConnectionException as e:
 	print(e)
