@@ -33,19 +33,10 @@ try:
 		myQosLevel=1
 
 		# timestamp is UTC, and UTC time shall be used across
+		# The value 'None' in pyhton will automatically convert to 'null' in JSON
 		myData={'d': {'temp':temp, 'humidity':humidity, 'lightlvl':lightlvl, 'moistlvl':moistlvl}, 'ts': datetime.utcnow().isoformat()+'Z'}
 		client.publishEvent("IC306A", "json", myData, myQosLevel)
 		time.sleep(15)
 
 except ibmiotf.ConnectionException as e:
 	print(e)
-
-# def myCommandCallback(cmd):
-#   print("Command received: %s" % cmd.data)
-#   if cmd.command == "TurnOn":
-#     grovepi.digitalWrite(2,1)
-#     print("LED is now turned ON")
-#   elif cmd.command == "TurnOff":
-#     grovepi.digitalWrite(2,0)
-#     print("LED is now turned ON")
-
