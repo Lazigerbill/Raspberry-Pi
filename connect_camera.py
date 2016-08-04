@@ -40,7 +40,7 @@ try:
 	while True:
 		camera = picamera.PiCamera()
 		try:
-			camera.vflip = True
+			camera.vflip = False
 			camera.resolution = (480, 560)
 			camera.start_preview()
 			time.sleep(1)
@@ -52,7 +52,7 @@ try:
 
 		publishEncodedImage(convertImageToBase64())
 
-		time.sleep(30)
+		time.sleep(60)
 
 except ibmiotf.ConnectionException as e:
 	print(e)
