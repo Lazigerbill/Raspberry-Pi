@@ -1,6 +1,6 @@
 import time
 # import ibmiotf.device
-import minmalmodbus
+import minimalmodbus
 
 #Define port and slave address(decimal) here
 instr = minimalmodbus.Instrument("/dev/ttyAMA0", 1) 
@@ -15,10 +15,10 @@ while True:
 	except Exception, e:
 		print str(e)
 
-	print "Frequency: " + fq
-	print "Phase Voltage: " + v1
-	print "Line Voltage: " + v12
-	print "Current: " + current
-	print "Phase A Power: " + apower
+	print "Frequency: %.2f" % fq
+	print "Phase Voltage: %.2f" % v1
+	print "Line Voltage: %.2f" % v12
+	print "Current: %.2f" % current
+	print "Phase A Power: %.2f" % apower
 
 	time.sleep(3000)
