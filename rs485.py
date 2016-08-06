@@ -26,11 +26,11 @@ while True:
 	except Exception, e:
 		print str(e)
 
-	myData={'d': {'fq':temp, 'v1':v1, 'v12':v12, 'current':current}, 'apower': apower}
+	myData={'d': {'fq':fq, 'v1':v1, 'v12':v12, 'current':current, 'apower': apower}}
 	client.publishEvent("rs485", "json", myData, myQosLevel)	
 	print "Frequency: %.2f" % fq
 	print "Phase Voltage: %.2f" % v1
 	print "Line Voltage: %.2f" % v12
 	print "Current: %.2f" % current
 	print "Phase A Power: %.2f" % apower
-	time.sleep(1)
+	time.sleep(5)
