@@ -1,4 +1,5 @@
 import time
+import datetime
 # import ibmiotf.device
 import minimalmodbus
 
@@ -6,6 +7,7 @@ import minimalmodbus
 instr = minimalmodbus.Instrument("/dev/ttyAMA0", 1) 
 try:
 	while True:
+		print datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 		try: 
 			fq = instr.read_float(int('4000',16)) 
 			v1 = instr.read_float(int('4002',16))
@@ -19,9 +21,9 @@ try:
 		print "Phase Voltage: %.2f" % v1
 		print "Line Voltage: %.2f" % v12
 		print "Current: %.2f" % current
-		print "Phase A Power: %.2f" % apower
+		print "Phase A Power: %.5f" % apower
 
-		time.sleep(3000)
-		print ("complete...")
+		time.sleep(1)
+		
 except Exception, e:
 	print str(e)
