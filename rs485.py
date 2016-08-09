@@ -3,7 +3,8 @@ import datetime
 import ibmiotf.device
 import minimalmodbus
 import logging
-logging.basicConfig(filename='/home/pi/Raspberry-Pi/rs485.log', filemode='w', level=logging.DEBUG)
+# logging.basicConfig(filename='/home/pi/Raspberry-Pi/rs485.log', filemode='w', level=logging.DEBUG)
+logging.basicConfig(filename='/home/pi/Raspberry-Pi/rs485.log', level=logging.DEBUG)
 
 #initialize port
 try:
