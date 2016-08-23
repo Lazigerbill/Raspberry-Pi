@@ -39,7 +39,7 @@ while True:
 		print str(e)
 
 	try: 
-		myData={'d': {'fq':fq, 'v1':v1, 'v12':v12, 'current':current, 'apower': apower}}
+		myData={'d': {'fq':fq, 'v1':v1, 'v12':v12, 'current':current, 'apower': apower}, 'ts': datetime.datetime.utcnow().isoformat()+'Z'}
 		client.publishEvent("rs485", "json", myData, myQosLevel)	
 		# print "Frequency: %.2f" % fq
 		# print "Phase Voltage: %.2f" % v1
@@ -48,7 +48,7 @@ while True:
 		# print "Phase A Power: %.2f" % apower
 		print str(myData)
 		# logging.info(str(myData))
-		time.sleep(5)
+		time.sleep(3)
 
 	except Exception, e:
 		logging.debug(str(e))
