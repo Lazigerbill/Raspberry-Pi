@@ -9,9 +9,9 @@ logging.basicConfig(filename='/home/pi/Documents/logs/led_dimmer.log', level=log
 try:
 	options = ibmiotf.device.ParseConfigFile('/etc/rpi_iotf/ledpod.cfg')
 	client = ibmiotf.device.Client(options)
-	logging.info("IBM IoTF connected successfully, QoS Level at %i" % myQosLevel)
+	# myQosLevel = 1
 	client.connect()
-	myQosLevel = 1
+	# logging.info("IBM IoTF connected successfully, QoS Level at %i" % myQosLevel)
 	client.commandCallback = myCommandCallback
 except ibmiotf.ConnectionException as e:
 	logging.debug(str(e))
