@@ -25,7 +25,7 @@ except Exception, e:
 	logging.debug(str(e))
 	print str(e)
 
-def beep:
+def beep():
 	wiringpi.digitalWrite(12, 1)
 	time.sleep(0.150)
 	wiringpi.digitalWrite(12, 0)
@@ -35,7 +35,7 @@ def beep:
 	wiringpi.digitalWrite(12, 0)
 
 def myCommandCallback(cmd):
-    print("Command received: %s" % cmd.data)
+    	print("Command received: %s" % cmd.data)
 	print("timestamp: %s" % cmd.timestamp)	
 	percent_level = cmd.data["level"]
 	pwm_level = int(1024*(percent_level/float(100)));
