@@ -38,7 +38,7 @@ def myCommandCallback(cmd):
     	print("Command received: %s" % cmd.data)
 	print("timestamp: %s" % cmd.timestamp)	
 	percent_level = cmd.data["level"]
-	pwm_level = int(1024*(percent_level/float(100)));
+	pwm_level = int(1024*(1-(percent_level/float(100))));
 	print(pwm_level)
 	wiringpi.pwmWrite(18, pwm_level)    # duty cycle between 0 and 1024. 0 = off, 1024 = fully on
 	beep
