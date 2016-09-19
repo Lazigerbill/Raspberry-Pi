@@ -10,13 +10,13 @@ try:
 	options = ibmiotf.device.ParseConfigFile('/etc/rpi_iotf/ledpod.cfg')
 	client = ibmiotf.device.Client(options)
 	# myQosLevel = 1
-	client.connect()
 	# logging.info("IBM IoTF connected successfully, QoS Level at %i" % myQosLevel)
-	# client.commandCallback = myCommandCallback
 except ibmiotf.ConnectionException as e:
 	logging.debug(str(e))
 	print str(e)
 
+client.connect()
+client.commandCallback = myCommandCallback
 #Loop starts here:
 while True:
 	myData={'txt': 'hello world', 'ts': datetime.datetime.utcnow().isoformat()+'Z'}
@@ -26,8 +26,8 @@ while True:
 
 
 
-# def myCommandCallback(cmd):
-# 	print("Command received: %s" % cmd.data)
+def myCommandCallback(cmd):
+	print("Command received: %s" % cmd.data)
 	# if cmd.command == "setInterval":
 	# 	if 'interval' not in cmd.data:
 	# 		print("Error - command is missing required information: 'interval'")
