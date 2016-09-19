@@ -19,18 +19,29 @@ except ibmiotf.ConnectionException as e:
 try:
 	wiringpi.wiringPiSetupGpio()  
 	wiringpi.pinMode(18,2)      # pwm only works on GPIO port 18  
+	wiringpi.pinMode(12,1)		# 0 = read, 1 = write, 2 = PWM
 	# wiringpi.pwmWrite(18, 0)  
 except Exception, e:
 	logging.debug(str(e))
 	print str(e)
 
+def beep:
+	wiringpi.digitalWrite(12, 1)
+	time.sleep(0.150)
+	wiringpi.digitalWrite(12, 0)
+	time.sleep(0.050)	
+	wiringpi.digitalWrite(12, 1)
+	time.sleep(0.150)
+	wiringpi.digitalWrite(12, 0)
+
 def myCommandCallback(cmd):
-        print("Command received: %s" % cmd.data)
+    print("Command received: %s" % cmd.data)
 	print("timestamp: %s" % cmd.timestamp)	
 	percent_level = cmd.data["level"]
 	pwm_level = int(1024*(percent_level/float(100)));
 	print(pwm_level)
 	wiringpi.pwmWrite(18, pwm_level)    # duty cycle between 0 and 1024. 0 = off, 1024 = fully on
+	beep
 
 client.connect()
 client.commandCallback = myCommandCallback
