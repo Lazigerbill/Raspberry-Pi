@@ -3,8 +3,31 @@ import datetime
 import ibmiotf.device
 import minimalmodbus
 import logging
-# logging.basicConfig(filename='/home/pi/Raspberry-Pi/rs485.log', filemode='w', level=logging.DEBUG)
-logging.basicConfig(filename='/home/pi/totem/iot_mqtt.log', level=logging.DEBUG)
+from apscheduler.schedulers.background import BlockingScheduler
+
+#This is the method where data is read from the power meter and then publish MQTT to broker
+def readAndPublish():
+	try: 
+		vAvg = instr.read_float(int('4008',16))
+		vLAvg = instr.read_float(int('4010',16))
+		iAvg = instr.read_float(int('4018',16))
+		pSum = instr.read_float(int('4022',16))
+		ts = datetime.datetime.utcnow().isoformat()+'Z'
+	except Exception, e:
+		logging.debug(str(e))
+		print str(e)
+
+	try: 
+		myData={'d': {'v1':vAvg, 'v12':vLAvg, 'current':iAvg, 'apower': pSum}, 'ts': ts}
+		client.publishEvent("rs485", "json", myData, myQosLevel)	
+		print str(myData)
+
+
+	except Exception, e:
+		logging.debug(str(e))
+		print str(e)
+
+logging.basicConfig(filename='/home/pi/totem/iot_mqtt.log', filemode='w', level=logging.DEBUG)
 
 #initialize port
 try:
@@ -25,28 +48,8 @@ except Exception, e:
 	logging.debug(str(e))
 	print str(e)
 
-#Loop starts here:
-#single phase power
-while True:
-	try: 
-		fq = instr.read_float(int('4000',16)) 
-		v1 = instr.read_float(int('4002',16))
-		v12 = instr.read_float(int('400a',16))
-		current = instr.read_float(int('4012',16))
-		apower = instr.read_float(int('401c',16))
-	except Exception, e:
-		logging.debug(str(e))
-		print str(e)
-
-	try: 
-		myData={'d': {'fq':fq, 'v1':v1, 'v12':v12, 'current':current, 'apower': apower}, 'ts': datetime.datetime.utcnow().isoformat()+'Z'}
-		client.publishEvent("rs485", "json", myData, myQosLevel)	
-		print str(myData)
-		# logging.info(str(myData))
-
-		#define read interval here:
-		time.sleep(3)
-
-	except Exception, e:
-		logging.debug(str(e))
-		print str(e)
+# setup scheduler here, run every 5 seconds
+# stupid scheduler runs on UTC, so beware of DST
+sched = BlockingScheduler()
+sched.add_job(readAndPublish, 'cron', day_of_week="0-5", hour="0-3,11-23", second="*/5")
+sched.start()

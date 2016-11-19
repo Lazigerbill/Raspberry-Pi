@@ -27,29 +27,29 @@ except Exception, e:
 
 #Loop starts here:
 #single phase power
-while True:
-	try: 
-		fq = instr.read_float(int('4000',16)) 
-		v1 = instr.read_float(int('4002',16))
-		v12 = instr.read_float(int('400a',16))
-		current = instr.read_float(int('4012',16))
-		apower = instr.read_float(int('401c',16))
-	except Exception, e:
-		logging.debug(str(e))
-		print str(e)
+# while True:
+try: 
+	fq = instr.read_float(int('4000',16)) 
+	v1 = instr.read_float(int('4002',16))
+	v12 = instr.read_float(int('400a',16))
+	current = instr.read_float(int('4012',16))
+	apower = instr.read_float(int('401c',16))
+except Exception, e:
+	logging.debug(str(e))
+	print str(e)
 
-	try: 
-		myData={'d': {'fq':fq, 'v1':v1, 'v12':v12, 'current':current, 'apower': apower}, 'ts': datetime.datetime.utcnow().isoformat()+'Z'}
-		client.publishEvent("rs485", "json", myData, myQosLevel)	
-		# print "Frequency: %.2f" % fq
-		# print "Phase Voltage: %.2f" % v1
-		# print "Line Voltage: %.2f" % v12
-		# print "Current: %.2f" % current
-		# print "Phase A Power: %.2f" % apower
-		print str(myData)
-		# logging.info(str(myData))
-		time.sleep(3)
+try: 
+	myData={'d': {'fq':fq, 'v1':v1, 'v12':v12, 'current':current, 'apower': apower}, 'ts': datetime.datetime.utcnow().isoformat()+'Z'}
+	client.publishEvent("rs485", "json", myData, myQosLevel)	
+	# print "Frequency: %.2f" % fq
+	# print "Phase Voltage: %.2f" % v1
+	# print "Line Voltage: %.2f" % v12
+	# print "Current: %.2f" % current
+	# print "Phase A Power: %.2f" % apower
+	print str(myData)
+	# logging.info(str(myData))
+	time.sleep(3)
 
-	except Exception, e:
-		logging.debug(str(e))
-		print str(e)
+except Exception, e:
+	logging.debug(str(e))
+	print str(e)
